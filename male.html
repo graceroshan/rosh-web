@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Male Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ADD8E6; /* Light blue background */
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+        .buttons {
+            margin-top: 15px;
+        }
+        audio {
+            display: none; /* Hide the default audio controls */
+        }
+        .fixed-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="userGreeting">Hello!</h2> <!-- Will update with user's name -->
+        <h3 id="randomText">Loading...</h3>
+        
+        <div class="fixed-text">
+            A special song for you!
+        </div>
+
+        <audio id="audioPlayer">
+            <source src="male.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="buttons">
+            <button onclick="playAudio()">Play</button>
+            <button onclick="stopAudio()">Stop</button>
+        </div>
+    </div>
+
+    <script>
+        // Display user's name from localStorage
+        window.onload = function () {
+            const userName = localStorage.getItem("userName");
+            if (userName) {
+                document.getElementById("userGreeting").innerText = `${userName}!,says`;
+            }
+        };
+
+        // Random welcome messages
+        const messages = [
+            "यादों की गहराई में  लगा हूं मै खोने, अब जा रहा हूं ,हिला कर सोने,",
+            "आज फिर उनका दिल दुखा दिया हमने,आज फिर उनका दिल दुखा दिया हमने,देकर Ice Cream का नाम अँधेरे में फिर से L@Nd चूसा दिया हमने.!😜😜😜😜😜",
+            "चिंता से चतुराई घटे, दुख से घटे शरीर…हाथ से हिलाते रहे, खुश रहेगा शरीर..!",
+            "सच्चा प्यार वो नहीं जिस में दिल टूट जाये,सच्चा प्यार वो है जिस में पलंग टूट जाये!😂😂😂😂😂",
+            "लड़की बोली कपड़े कौन धोएगा? मैंने कहा, पहले तू उतार तो सही! 😈👗",
+        ];
+        document.getElementById("randomText").innerText = messages[Math.floor(Math.random() * messages.length)];
+
+        // Audio functions
+        function playAudio() {
+            document.getElementById("audioPlayer").play();
+        }
+        function stopAudio() {
+            const audio = document.getElementById("audioPlayer");
+            audio.pause();
+            audio.currentTime = 0; // Reset to start
+        }
+    </script>
+</body>
+</html>
